@@ -29,42 +29,22 @@ function verificaTamanhoDaLista(){
     } 
 }
 
-function sortearAmigo() {
+function sortearAmigo(){    
     verificaTamanhoDaLista();
-    let nomeDoAmigoSorteado;
-    let indiceSorteado;
 
-    if (listaDeAmigosSorteados.length === nomeDosAmigos.length) {
+    let nomeDoAmigoSorteado;    
+    let indiceSorteado = parseInt(Math.random() * nomeDosAmigos.length);
+
+    if(listaDeAmigosSorteados.length == nomeDosAmigos.length){
         alert('Todos já foram sorteados!');
         listaDeAmigosSorteados = [];
     }
 
-    do {
-        indiceSorteado = Math.floor(Math.random() * nomeDosAmigos.length); // Math.floor arredonda para baixo.
+    if(listaDeAmigosSorteados.includes(nomeDosAmigos[indiceSorteado])){        
+        sortearAmigo(); //zona de perigo
+    }else{
+        listaDeAmigosSorteados.push(nomeDosAmigos[indiceSorteado]);
         nomeDoAmigoSorteado = nomeDosAmigos[indiceSorteado];
-    } while (listaDeAmigosSorteados.includes(nomeDoAmigoSorteado));
-
-    listaDeAmigosSorteados.push(nomeDoAmigoSorteado);
-    document.getElementById('resultado').textContent = `O amigo secreto sorteado é: ${nomeDoAmigoSorteado}.`    
+        document.getElementById('resultado').textContent = `O amigo secreto sorteado é: ${nomeDoAmigoSorteado}.`
+    }
 }
-
-
-// function sortearAmigo(){    
-//     verificaTamanhoDaLista();
-
-//     let nomeDoAmigoSorteado;    
-//     let indiceSorteado = parseInt(Math.random() * nomeDosAmigos.length);
-
-//     if(listaDeAmigosSorteados.length == nomeDosAmigos.length){
-//         alert('Todos já foram sorteados!');
-//         listaDeAmigosSorteados = [];
-//     }
-
-//     if(listaDeAmigosSorteados.includes(nomeDosAmigos[indiceSorteado])){        
-//         sortearAmigo(); //zona de perigo
-//     }else{
-//         listaDeAmigosSorteados.push(nomeDosAmigos[indiceSorteado]);
-//         nomeDoAmigoSorteado = nomeDosAmigos[indiceSorteado];
-//         alert(`Seu amigo secreto é ${nomeDoAmigoSorteado}.`)
-//     }
-// }
